@@ -1,0 +1,2 @@
+# HackInIndia_teamEd
+A online Platform like website where students, teachers, or professionals can access video lectures anytime from anywhere both online and offline not even live. So basically what happens is that the teachers record their classes but nobody is able to access it after the class. Someone like in Jammu&amp;Kashmir, have 2G (slow) internet connection and are not able to access the live classes.
