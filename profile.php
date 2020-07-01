@@ -1,7 +1,7 @@
 <?php
 
     include "header.php";
-    include "navigation.php";
+    include "loginnav.php";
 
 ?>
 

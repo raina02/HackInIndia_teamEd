@@ -9,3 +9,5 @@
     <title>Hackathon</title>
 </head>
 <body>
+
+<?php error_reporting(0);?>

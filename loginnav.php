@@ -1,3 +1,9 @@
+<?php
+
+ session_start();
+
+?>
+
 <style>
   .navbar a{
     font-size:20px;
@@ -28,7 +34,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle da" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                  profile
+                  <?php if(isset($_SESSION["name"])){echo $_SESSION["name"];} ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
                   <li><a class="dropdown-item px-0 pl-2" style="font-size:16px;" href="profile.php"><i class="fa fa-edit mr-1"></i>Edit Profile</a></li>

@@ -1,8 +1,11 @@
 
 <?php 
 
+session_start();
+
     include "header.php";
     include "navigation.php";
+    include "db.php";
 
 ?>
 
@@ -24,6 +27,49 @@
     }
 </style>
 
+<?php
+
+    if(isset($_POST["login"])){
+
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        
+
+        $selectquery = "select * from users where email='$email'";
+        $query = mysqli_query($connection,$selectquery);
+
+        if(mysqli_num_rows($query) >0){
+
+            while($row = mysqli_fetch_assoc($query)){
+               $check = password_verify($password,$row["password"]);
+                if($check){
+                    $_SESSION["name"] = $row["fname"];
+                    header('location:profile.php');
+
+                }else{
+                    $passworderror='<div class="alert alert-danger alert-dismissible fade show " role="alert">
+                                        Password doesn\'t match
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>';
+                }
+            }
+
+        }else{
+            $emailerror='<div class="alert alert-danger alert-dismissible fade show " role="alert">
+                                Email not found
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+        }
+
+    }
+
+?>
+
+
 <div class="conatiner form-group">
     <div class="form px-5 py-4">
         <div class="heading">
@@ -33,11 +79,12 @@
         
             <label for="email" class="form-label">Email:</label>
             <input type="email" class="form-control mb-2" id="exampleInputEmail1" name="email" placeholder="Email">
-            
+            <?php if(isset($emailerror)){echo $emailerror;}?>
         
             <label for="exampleInputPassword1" class="form-label">Password:</label>
             <input type="password" class="form-control mb-3" id="exampleInputPassword1" name="password" placeholder="Password">
-        
+            <?php if(isset($passworderror)){echo $passworderror;}?>
+
         
             <div class="line-div d-flex ">
                 <div class="checkbox">

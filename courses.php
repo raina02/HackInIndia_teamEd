@@ -1,8 +1,13 @@
 <?php
-
+    session_start();
     include "header.php";
-    include "navigation.php";
-?>
+
+    if(isset($_SESSION["name"])){
+        include "loginnav.php";
+    }else{
+        include "navigation.php";
+    }
+    ?>
 <style>
     .mini a{
         font-size:16px;
